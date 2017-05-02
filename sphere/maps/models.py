@@ -3,13 +3,17 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
 
-
 class Country(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     population = models.IntegerField(verbose_name='Население')
+    color = models.CharField(max_length=7, verbose_name='Цвет', null=True, blank=True)
     
     def __str__(self):
         return self.name
+
+    
+    def get_absolute_url(self):
+        return '/maps/country/{0}/'.format(self.id)
 
     class Meta:
         verbose_name='Страна'
