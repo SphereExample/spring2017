@@ -77,11 +77,18 @@ WSGI_APPLICATION = 'application.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sphere',
+        'USER': 'sphere',
+        'PASSWORD': 'spherepass',
+        'HOST': 'sphere-mysql',
+        'OPTIONS': {
+            'charset': 'utf8',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
+        'CONN_MAX_AGE': 60 * 5
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
